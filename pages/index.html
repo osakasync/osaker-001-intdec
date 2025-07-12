@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intdec</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IntDecomposer Terminal</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>integer decomposing view</h1>
-    <script type="module" src="../scripts/converter.js"></script>
+  
+<canvas id="pixels"></canvas>
+<canvas id="pixels"></canvas>
+
+<div id="console-stack">
+  <div class="window">
+    <div id="terminal">
+      <div id="output"></div>
+    </div>
+    <div id="input-line">
+      <span id="prompt">INTDEC:/core/bin&gt;</span>
+      <div id="input-wrapper">
+        <input type="text" id="user-input" autofocus autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" />
+        <span id="cursor">|</span>
+      </div>
+    </div>
+  </div>
+  <div id="keyboard"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script type="module" src="/scripts/core/main.js"></script>
 </body>
 </html>

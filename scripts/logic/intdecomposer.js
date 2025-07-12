@@ -122,8 +122,8 @@ export default class IntDecomposer {
         return root * root == this.value;
     }
 
-    // Returns [true, exponent] if value is a power of 2
-    // Returns [false, bit length - 1] otherwise (exponent not meaningful)
+    //returns [true, exponent] if value is a power of 2
+    //returns [false, bit length - 1] otherwise (exponent not meaningful)
     isPowerOfTwo() {
        let isPower = (this.value & (this.value - 1)) === 0;
        let exponent = this.getBitLength() - 1;
@@ -266,5 +266,4 @@ export default class IntDecomposer {
             funFact: this.getFunFact()
         };
     }
-
 }
