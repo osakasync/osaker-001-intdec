@@ -13,7 +13,7 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
   };
 
   function handleBackspace() {
-    input.value = input.value.slice(0, 1);
+    input.value = input.value.slice(0, -1);
   }
 
   function handleCharacterInput(char) {

@@ -7,13 +7,14 @@ export function initAmbientEffect() {
   function drawPixels() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.18)";
     ctx.fillRect(0, 0, width, height);
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb');
     const count = 15;
     for (let i = 0; i < count; i++) {
       const x = Math.random() * width;
       const y = Math.random() * height;
       ctx.beginPath();
       ctx.arc(x, y, 1.5, 0, 2 * Math.PI);
-      ctx.fillStyle = `rgba(${getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb')}, 0.6)`;
+      ctx.fillStyle = `rgba(${accentColor}, 0.6)`;
       ctx.fill();
     }
   }

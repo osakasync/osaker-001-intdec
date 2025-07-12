@@ -9,15 +9,11 @@ const terminalWindow = document.querySelector(".window");
 const inputLine = document.getElementById("input-line");
 
 function resetOverflowOnResize() {
-  const inputEl = document.getElementById("user-input");
-  const promptEl = document.getElementById("prompt");
-  const windowEl = document.querySelector(".window");
-
-  const terminalWidth = windowEl.clientWidth;
-  const textWidth = promptEl.offsetWidth + getTextWidth(inputEl.value, inputEl);
+  const terminalWidth = terminalWindow.clientWidth;
+  const textWidth = prompt.offsetWidth + getTextWidth(input.value, input);
 
   if (textWidth > terminalWidth - 16) {
-    inputEl.value = "";
+    input.value = "";
     updateCursorPosition();
     triggerOverflowFeedback();
 

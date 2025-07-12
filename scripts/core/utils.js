@@ -1,12 +1,14 @@
+const terminalElement = document.getElementById("terminal");
+
 export function scrollToBottom() {
-  const terminal = document.getElementById("terminal");
-  terminal.scrollTop = terminal.scrollHeight;
+  terminalElement.scrollTop = terminalElement.scrollHeight;
 }
 
+const measureCanvas = document.createElement("canvas");
+const measureCtx = measureCanvas.getContext("2d");
+
 export function getTextWidth(text, inputElement) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
   const style = getComputedStyle(inputElement);
-  ctx.font = `${style.fontSize} ${style.fontFamily}`;
-  return ctx.measureText(text).width;
+  measureCtx.font = `${style.fontSize} ${style.fontFamily}`;
+  return measureCtx.measureText(text).width;
 }

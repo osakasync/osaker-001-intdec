@@ -1,4 +1,4 @@
-import IntDecomposer from "./intdecomposer.js";
+import IntDecomposer from "../logic/intdecomposer.js";
 
 const decomp = new IntDecomposer(3999999);
 

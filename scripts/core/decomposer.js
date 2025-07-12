@@ -1,4 +1,4 @@
-import { scrollToBottom, getTextWidth } from "./utils.js";
+import { scrollToBottom } from "./utils.js";
 import { updateCursorPosition } from "./ui.js";
 
 const output = document.getElementById("output");
