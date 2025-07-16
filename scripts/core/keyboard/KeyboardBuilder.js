@@ -7,15 +7,15 @@ export function buildKeyboard(layout, keyboardElement, handleClick) {
       const btn = document.createElement("button");
       btn.classList.add("key");
 
-      if (["Esc", "Shift", "\\", "Tab", "Space", "Enter", "←", "CapsLock"].includes(key)) {
+      if (["Esc", "Shift", "\\", "Tab", "Space", "Enter", "⟵", "CapsLock"].includes(key)) {
         btn.classList.add("extra-wide");
       }
 
-      if (["Space", "Enter", "←", "CapsLock", "Shift"].includes(key)) {
+      if (["Space", "Enter", "⟵", "CapsLock", "Shift"].includes(key)) {
         const actionMap = {
           "Space": "space",
           "Enter": "enter",
-          "←": "backspace",
+          "⟵": "backspace",
           "CapsLock": "capslock",
           "Shift": "shift"
         };

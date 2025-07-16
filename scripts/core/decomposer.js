@@ -7,18 +7,21 @@ const prompt = document.getElementById("prompt");
 
 export function initBootSequence() {
   const bootLines = [
-    "IntDecomposer v1.0",
-    "Initializing analysis core...",
+    "+-----------------------------------------+",
+    "|   I N T D E C   v0.1  -  integer tool   |",
+    "|    (C) 2025, OSAKASYNC TERMINAL BIOS    |",
+    "------------------------------------------+",
     "System ready. Enter your favorite integer:"
   ];
-
+                                                                    
   bootLines.forEach((line, i) => {
-    setTimeout(() => typeLine(line), i * 500);
+    setTimeout(() => typeLine(line, i !== (bootLines.length - 1) ? "welcome" : "regular"), i * 500);
   });
 }
 
-function typeLine(text) {
+function typeLine(text, type="regular") {
   const line = document.createElement("div");
+  line.className = type;
   output.appendChild(line);
   scrollToBottom();
   let i = 0;
@@ -31,18 +34,18 @@ function typeLine(text) {
 
 export function handleInputSubmit() {
   const val = input.value.trim();
-  if (val !== "") {
-    const userLine = document.createElement("div");
-    userLine.innerHTML = `<span style="color:var(--accent-color); transition: color 0.2s ease;">INTDEC:/core/bin&gt;</span> ${val}`;
-    output.appendChild(userLine);
+  
+  const userLine = document.createElement("div");
+  userLine.innerHTML = `<span style="color:var(--accent-color); transition: color 0.2s ease;">INTDEC:/core/bin&gt;</span> ${val}`;
+  output.appendChild(userLine);
 
-    const result = 'fake result for now'
-    const response = document.createElement("div");
-    response.textContent = result;
-    output.appendChild(response);
+  const result = 'fake result for now'
+  const response = document.createElement("div");
+  response.textContent = result;
+  output.appendChild(response);
 
-    input.value = "";
-    updateCursorPosition();
-    scrollToBottom();
-  }
+  input.value = "";
+  updateCursorPosition();
+  scrollToBottom();
+
 }

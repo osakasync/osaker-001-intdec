@@ -58,8 +58,10 @@ export function setupInputHandlers() {
   }
 
   inputLine.addEventListener("click", () => {
-    input.focus();
-    input.setSelectionRange(input.value.length, input.value.length);
+    if (document.activeElement !== input) {
+      input.focus();
+      input.setSelectionRange(input.value.length, input.value.length);
+    }
   });
 
   anime({
