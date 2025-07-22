@@ -5,13 +5,13 @@ const output = document.getElementById("output");
 const input = document.getElementById("user-input");
 const prompt = document.getElementById("prompt");
 
-export function initBootSequence() {
+export function initWelcomeMessage() {
   const bootLines = [
     "+-----------------------------------------+",
     "|   I N T D E C   v0.1  -  integer tool   |",
     "|    (C) 2025, OSAKASYNC TERMINAL BIOS    |",
-    "------------------------------------------+",
-    "System ready. Enter your favorite integer:"
+    "*-----------------------------------------+",
+    "> System ready. Enter your favorite integer:"
   ];
                                                                     
   bootLines.forEach((line, i) => {
