@@ -1,5 +1,5 @@
-import { triggerOverflowFeedback } from "/scripts/core/feedback.js";
-import { refreshInputUI, canAcceptChar } from "/scripts/core/ui.js";
+import { triggerOverflowFeedback } from "../feedback.js";
+import { refreshInputUI, canAcceptChar } from "../ui.js";
 import { animateKeyPress } from "./KeyAnimator.js";
 
 export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
