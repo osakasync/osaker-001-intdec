@@ -1,4 +1,4 @@
-import { getTextWidth } from "./utils.js";
+import { getTextWidth, getCharWidth } from "./utils.js";
 import { triggerOverflowFeedback } from "./feedback.js";
 import { handleInputSubmit } from "./decomposer.js";
 
@@ -72,15 +72,31 @@ export function setupInputHandlers() {
     loop: true,
     direction: 'alternate'
   });
+  
+  ["input", "click", "keyup", "focus", "mouseup"].forEach(evt =>
+  input.addEventListener(evt, () =>
+    requestAnimationFrame(updateCursorPosition)
+  )
+);
 
 
   updateCursorPosition();
 }
 
 export function updateCursorPosition() {
-  const w = getTextWidth(input.value, input);
-  cursor.style.left = `${w + 2}px`;
+  const caretIndex = input.selectionStart ?? input.value.length;
+  const isAtEnd = caretIndex === input.value.length;
+  const textBeforeCaret = input.value.slice(0, caretIndex);
+  const width = getTextWidth(textBeforeCaret, input);
+  const charWidth = getCharWidth(input);
+
+  cursor.classList.toggle("block-cursor", !isAtEnd);
+
+  const offset = isAtEnd ? 0 : -charWidth - 1;
+  cursor.style.left = `${width + offset}px`;
 }
+
+
 
 export function canAcceptChar(char, input, terminalWindow, prompt) {
   const width = getTextWidth(input.value + char, input);

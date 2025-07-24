@@ -104,7 +104,7 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
         }
         break;
     }
-
+    
     animateKeyPress(btn, wasActive, btn.classList.contains("active"));
     refreshInputUI();
     input.focus();

@@ -64,12 +64,14 @@ export function initBootSequence() {
     skipButton.classList.add("hidden");
     bootText.innerText = "";
     typeNextLine();
+    window.triggerRadialPulse();
   });
 
   skipButton.addEventListener("click", () => {
     skip = true;
     bootText.innerText = "> System ready. Starting up UI...";
     finishBoot();
+    window.triggerRadialPulse();
   });
 }
 
