@@ -24,15 +24,15 @@ This project uses the **Web437 IBM VGA 8x16** and **Web437 IBM VGA 8x16-2x** fon
 ## Features
 
 ### Animated boot sequence with simulated system logs:
-  ![Boot sequence](./docs/bootgif.gif)
+  ![Boot sequence](https://github.com/user-attachments/assets/74b24d84-8bd8-475b-a644-277e9a825d68)
 
 ### Interactive virtual keyboard:
-![Keyboard interaction](./docs/keyboard.gif)
+![Keyboard interaction](https://github.com/user-attachments/assets/fc1b0a05-5ce3-4286-8e1f-a9ef300ddab0)
   - Supports Caps Lock and Shift
   - Responds to both on-screen and physical key presses(physical key feedback is WIP)  
 
 ### Visual overflow feedback when input exceeds the allowed length:  
-  ![Overflow feedback](./docs/overflow.gif)
+  ![Overflow feedback](https://github.com/user-attachments/assets/ef3db137-b01f-4ce0-9561-0cddc1832f75)
 
 ## Work in Progress
 
