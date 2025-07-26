@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>IntDecomposer Terminal</title>
-  <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-  
-<canvas id="pixels"></canvas>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>IntDecomposer Terminal</title>
+		<link
+			rel="stylesheet"
+			href="styles/style.css" />
+	</head>
+	<body>
+		<canvas id="pixels"></canvas>
 
-<div id="console-stack">
-  <div class="window">
-    <div id="boot-overlay">
-      <div id="crt-flash"></div>
+		<div id="console-stack">
+			<div class="window">
+				<div id="boot-overlay">
+					<div id="crt-flash"></div>
 
+					<div id="boot-ui">
+						<pre id="boot-text"></pre>
+						<button id="power-button">[ POWER ]</button>
+						<button id="skip-boot">SKIP BOOT</button>
+					</div>
+				</div>
 
-      <div id="boot-ui">
-        <pre id="boot-text"></pre>
-        <button id="power-button">[ POWER ]</button>
-        <button id="skip-boot">SKIP BOOT</button>
-      </div>
-    </div>
-
-    <div id="terminal">
-      <div id="output"></div>
-    </div>
-    <div id="input-line">
-      <span id="prompt">INTDEC:/core/bin&gt;</span>
-      <div id="input-wrapper">
-        <input type="text" id="user-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" />
-        <span id="cursor">|</span>
-      </div>
-    </div>
-  </div>
-  <div id="keyboard"></div>
-  <div id="keyboard-trigger"><span class="arrow">&#x25BC;</span></div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-<script type="module" src="scripts/core/main.js"></script>
-</body>
+				<div id="terminal">
+					<div id="output"></div>
+				</div>
+				<div id="input-line">
+					<span id="prompt">INTDEC:/core/bin&gt;</span>
+					<div id="input-wrapper">
+						<input
+							type="text"
+							id="user-input"
+							autocomplete="off"
+							spellcheck="false"
+							autocorrect="off"
+							autocapitalize="off" />
+						<span id="cursor">|</span>
+					</div>
+				</div>
+			</div>
+			<div id="keyboard"></div>
+			<div id="keyboard-trigger"><span class="arrow">&#x25BC;</span></div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+		<script
+			type="module"
+			src="scripts/core/main.js"></script>
+	</body>
 </html>
