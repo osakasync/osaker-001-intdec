@@ -11,6 +11,7 @@ Intdec is an experimental web interface for integer decomposition and base conve
 - [External dependency](#external-dependency)
 - [Fonts](#fonts)
 - [Project Structure](#project-structure)
+- [Command list](#command-list)
 - [Features](#features)
 - [Work in Progress](#work-in-progress)
 
@@ -102,11 +103,11 @@ intdec/
 
 ### Animated boot sequence with simulated system logs
 
-![Boot sequence](./docs/bootup.gif)
+![Boot sequence](https://github.com/user-attachments/assets/625ac92f-1cdf-4e54-a5d6-433407bec769)
 
 ### Interactive virtual keyboard
 
-![Keyboard interaction](./docs/keyboard.gif)
+![Keyboard interaction](https://github.com/user-attachments/assets/fa84f326-fff4-48ff-9942-f8981fd57b5f)
 
 - Supports Caps Lock and Shift
 - Responds to both on-screen and physical key presses **(physical key feedback is WIP)**
@@ -115,15 +116,15 @@ intdec/
 
 #### Correct command
 
-![Correct Command](./docs/command_right.gif)
+![Correct Command](https://github.com/user-attachments/assets/98ac9383-98cc-4f40-a914-42ad879dab4d)
 
 #### Correct command with wrong arguments
 
-![Correct command with wrong arguments](./docs/command_warning.gif)
+![Correct command with wrong arguments](https://github.com/user-attachments/assets/08d6cd94-c990-4e5f-ac53-bdc79ccc9d4d)
 
 #### Wrong command
 
-![Wrong Command](./docs/command_error.gif)
+![Wrong Command](https://github.com/user-attachments/assets/4506baf0-4981-44ee-a276-ec89d3b37557)
 
 ## Planned Features
 
