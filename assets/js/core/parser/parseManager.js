@@ -6,6 +6,7 @@ export function parseCommand(input) {
 		triggerOverflowFeedback('#ff0');
 		return `Empty input. Type "help" to see all commands.`;
 	}
+
 	const [commandRaw, ...rawArgs] = input.trim().split(/\s+/);
 	const command = commandRaw.toLowerCase();
 	const entry = commandMap[command];

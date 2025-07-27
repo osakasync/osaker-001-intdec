@@ -7,6 +7,7 @@ const cursor = document.getElementById('cursor');
 const prompt = document.getElementById('prompt');
 const terminalWindow = document.querySelector('.window');
 const inputLine = document.getElementById('input-line');
+const output = document.getElementById('output');
 
 function resetOverflowOnResize() {
 	const terminalWidth = terminalWindow.clientWidth;
