@@ -1,13 +1,15 @@
 import { initWelcomeMessage } from '../decomposer.js';
+import { applySettings } from '../settings.js';
 
 export function initBootSequence() {
 	const overlay = document.getElementById('boot-overlay');
 	const powerButton = document.getElementById('power-button');
 	const bootText = document.getElementById('boot-text');
 	const skipButton = document.getElementById('skip-boot');
+	const bootUi = document.getElementById('boot-ui');
 
 	const lines = [
-		'> INTDEC BIOS v0.1 initializing...',
+		'> INTDEC BIOS v1.0 initializing...',
 		'> Scanning integer bus...',
 		'> Loading decomposition module...',
 		'> Establishing prime field interface...',
@@ -22,8 +24,7 @@ export function initBootSequence() {
 
 	function finishBoot() {
 		overlay.classList.add('hidden');
-		document.documentElement.style.setProperty('--accent-color', '#0f0');
-		document.documentElement.style.setProperty('--accent-rgb', '0,255,0');
+		applySettings();
 		initWelcomeMessage();
 		document.querySelector('#user-input').focus();
 		document
@@ -63,8 +64,11 @@ export function initBootSequence() {
 	powerButton.addEventListener('click', () => {
 		powerButton.classList.add('hidden');
 		skipButton.classList.add('hidden');
+		bootUi.classList.add('accent-stripes');
 		bootText.innerText = '';
+
 		typeNextLine();
+
 		window.triggerRadialPulse();
 		setTimeout(() => {
 			window.triggerRadialPulse();

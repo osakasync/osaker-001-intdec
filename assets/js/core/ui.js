@@ -1,6 +1,7 @@
 import { getTextWidth, getCharWidth } from './utils.js';
 import { triggerOverflowFeedback } from './feedback.js';
 import { handleInputSubmit } from './decomposer.js';
+import { CURSOR_BLINK_DURATION } from './settings.js';
 
 const input = document.getElementById('user-input');
 const cursor = document.getElementById('cursor');
@@ -67,7 +68,7 @@ export function setupInputHandlers() {
 	anime({
 		targets: '#cursor',
 		opacity: [0, 1],
-		duration: 500,
+		duration: CURSOR_BLINK_DURATION,
 		easing: 'easeInOutSine',
 		loop: true,
 		direction: 'alternate',

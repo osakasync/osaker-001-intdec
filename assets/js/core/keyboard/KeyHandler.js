@@ -20,6 +20,22 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 		'\\': '|',
 	};
 
+	let shiftButtons = [];
+
+	function getShiftButtons() {
+		if (shiftButtons.length === 0) {
+			shiftButtons = Array.from(
+				keyboard.querySelectorAll('[data-action="shift"]')
+			);
+			console.log('[getShiftButtons] initialized:', shiftButtons.length);
+		}
+		return shiftButtons;
+	}
+
+	function isAnyShiftActive() {
+		return getShiftButtons().some((btn) => btn.classList.contains('active'));
+	}
+
 	function handleBackspace() {
 		input.value = input.value.slice(0, -1);
 	}
@@ -29,7 +45,7 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 
 		if (/[a-z]/i.test(char)) {
 			displayChar =
-				capsEnabled !== shiftEnabled ? char.toUpperCase() : char.toLowerCase();
+				capsEnabled || shiftEnabled ? char.toUpperCase() : char.toLowerCase();
 		} else if (shiftEnabled && shiftSymbols[char]) {
 			displayChar = shiftSymbols[char];
 		}
@@ -42,11 +58,14 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 
 		if (shiftEnabled) {
 			shiftEnabled = false;
-			const shiftBtn = keyboard.querySelector('[data-action="shift"]');
-			const wasActive = shiftBtn.classList.contains('active');
-			if (shiftBtn) shiftBtn.classList.remove('active');
+			getShiftButtons().forEach((btn) => {
+				const wasActive = btn.classList.contains('active');
+				if (wasActive) {
+					btn.classList.remove('active');
+					animateKeyPress(btn, true, false);
+				}
+			});
 			updateKeyCase();
-			animateKeyPress(shiftBtn, wasActive, false);
 		}
 	}
 
@@ -60,9 +79,9 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 		updateKeyCase();
 	}
 
-	function handleShift(btn) {
-		shiftEnabled = !shiftEnabled;
-		btn.classList.toggle('active');
+	function handleShift(clickedBtn) {
+		clickedBtn.classList.toggle('active');
+		shiftEnabled = isAnyShiftActive();
 		updateKeyCase();
 	}
 
@@ -73,9 +92,7 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 
 			if (/[a-z]/i.test(base)) {
 				k.textContent =
-					capsEnabled !== shiftEnabled
-						? base.toUpperCase()
-						: base.toLowerCase();
+					capsEnabled || shiftEnabled ? base.toUpperCase() : base.toLowerCase();
 			} else if (shiftSymbols[base]) {
 				k.textContent = shiftEnabled ? shiftSymbols[base] : base;
 			}

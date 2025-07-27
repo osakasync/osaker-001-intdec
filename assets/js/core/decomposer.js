@@ -1,6 +1,7 @@
 import { scrollToBottom } from './utils.js';
 import { updateCursorPosition } from './ui.js';
 import { parseCommand } from './parser/parseManager.js';
+import { TRANSITION_SPEED } from './settings.js';
 
 const output = document.getElementById('output');
 const input = document.getElementById('user-input');
@@ -10,7 +11,7 @@ let bootCompleted = false;
 export function initWelcomeMessage() {
 	const bootLines = [
 		'+-----------------------------------------+',
-		'|   I N T D E C   v1.1  -  integer tool   |',
+		'|   I N T D E C   v1.0  -  integer tool   |',
 		'|    (C) 2025, OSAKASYNC TERMINAL BIOS    |',
 		'+-----------------------------------------+',
 		"> Type 'help' to see all commands:",
@@ -49,7 +50,7 @@ export function handleInputSubmit() {
 	const val = input.value.trim();
 
 	const userLine = document.createElement('div');
-	userLine.innerHTML = `<span style="color:var(--accent-color); transition: color 0.2s ease;">INTDEC:/core/bin&gt;</span> ${val}`;
+	userLine.innerHTML = `<span style="color:var(--accent-color); transition: color ${TRANSITION_SPEED} ease;">INTDEC:/core/bin&gt;</span> ${val}`;
 	output.appendChild(userLine);
 
 	const result = parseCommand(val);

@@ -1,5 +1,6 @@
 import { createAmbientParticles } from './ambientParticles.js';
 import { createPulseManager } from './ambientPulses.js';
+import { AMBIENT_SETTINGS } from '../settings.js';
 
 export function initAmbientEffect() {
 	let canvas = document.getElementById('pixels');
@@ -8,18 +9,13 @@ export function initAmbientEffect() {
 	let width = (canvas.width = window.innerWidth);
 	let height = (canvas.height = window.innerHeight);
 
-	const settings = {
-		MAX_PARTICLES: 250,
-		BASE_LIFESPAN: 250,
-		PARTICLES_PER_FRAME: 2,
-		PULSE_THICKNESS: 100,
-		MAX_PULSE_RADIUS: 1000,
-	};
+	const settings = AMBIENT_SETTINGS;
 
 	const { pulses, drawPulses, triggerPulse } = createPulseManager(
 		ctx,
 		settings
 	);
+
 	const [drawParticles, resetParticles] = createAmbientParticles(
 		ctx,
 		width,
@@ -46,7 +42,7 @@ export function initAmbientEffect() {
 		resetParticles(width, height);
 	});
 
-	const parallaxStrength = 20;
+	const parallaxStrength = settings.PARALLAX_STRENGTH;
 	let targetX = 0,
 		targetY = 0;
 	let currentX = 0,

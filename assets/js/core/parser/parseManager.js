@@ -1,9 +1,10 @@
 import commandMap from './commandMap.js';
 import { triggerOverflowFeedback } from '../feedback.js';
+import { WARNING_ERROR_COLOR, FATAL_ERROR_COLOR } from '../settings.js';
 
 export function parseCommand(input) {
 	if (input.trim() === '') {
-		triggerOverflowFeedback('#ff0');
+		triggerOverflowFeedback(WARNING_ERROR_COLOR);
 		return `Empty input. Type "help" to see all commands.`;
 	}
 
@@ -12,7 +13,7 @@ export function parseCommand(input) {
 	const entry = commandMap[command];
 
 	if (!entry) {
-		triggerOverflowFeedback();
+		triggerOverflowFeedback(FATAL_ERROR_COLOR);
 		return `Unknown command: "${command}". Type "help" to see all commands.`;
 	}
 
@@ -22,14 +23,14 @@ export function parseCommand(input) {
 	console.log(args.length, entry.argCount);
 
 	if (args.length !== entry.argCount) {
-		triggerOverflowFeedback('#ff0');
+		triggerOverflowFeedback(WARNING_ERROR_COLOR);
 		return `Mismatched arg count. Usage: ${entry.help}`;
 	}
 
 	try {
 		return entry.fn(...args);
 	} catch (e) {
-		triggerOverflowFeedback();
+		triggerOverflowFeedback(FATAL_ERROR_COLOR);
 		return `Error in "${command}": ${e.message}`;
 	}
 }

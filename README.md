@@ -2,13 +2,25 @@
 
 Intdec is an experimental web interface for integer decomposition and base conversion. It features a retro terminal-style UI rendered entirely in the browser using vanilla JavaScript and [Anime.js](https://animejs.com/).
 
+**Live demo**: [https://osakasync.github.io/osaker-001-intdec/](https://osakasync.github.io/osaker-001-intdec/)
+
+## Table of Contents
+
+- [Purpose](#purpose)
+- [Running](#running)
+- [External dependency](#external-dependency)
+- [Fonts](#fonts)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Work in Progress](#work-in-progress)
+
 ## Purpose
 
 This project is primarily created to learn through feedback. After finishing it, I plan to seek feedback from various communities to refactor and improve the project. It's not intended to be a truly useful tool since there are already many professionally made alternatives. Instead, I wanted this to be a fun experience for myself and (hopefully) others.
 
 ## Running
 
-Due to dependency on ES modules, it's recommended to run the app on a local server. Example would include the Live Server addon on Visual Studio Code.
+Due to dependency on **ES modules**, it's recommended to run the app on a local server. Example would include the **Live Server** addon on **Visual Studio Code**.
 
 ## External dependency
 
@@ -23,34 +35,110 @@ This project uses the **Web437 IBM VGA 8x16** and **Web437 IBM VGA 8x16-2x** fon
 - Original font files unmodified
 - Provided “as-is”, without warranty of any kind
 
+## Project Structure
+
+<details><summary><strong>Click to expand</strong></summary>
+
+```bash
+intdec/
+├── index.html                  # Entry point of the application
+├── .gitignore
+├── README.md                   # Project documentation (this file)
+├── assets/
+│   ├── fonts/                  # Web437 IBM VGA font files + font license
+│   │   ├── Web437_IBM_VGA_8x16.woff
+│   │   ├── Web437_IBM_VGA_8x16-2x.woff
+│   │   ├── FONT_LICENSE.TXT
+│   │   └── FONT_README.TXT
+│   ├── js/
+│   │   ├── core/
+│   │   │   ├── ambient/        # Background ambient
+│   │   │   ├── boot/           # Fake boot sequence
+│   │   │   ├── keyboard/       # Virtual keyboard
+│   │   │   ├── parser/         # Command parser
+│   │   │   ├── decomposer.js
+│   │   │   ├── feedback.js     # Visual warning/error feedback
+│   │   │   ├── main.js
+│   │   │   ├── settings.js     # Global settings
+│   │   │   ├── ui.js
+│   │   │   └── utils.js
+│   │   └── logic/
+│   │       ├── baseconverter.js
+│   │       └── intdecomposer.js
+│   └── styles/
+│       └── style.css           # Terminal layout and visual style
+```
+
+</details>
+
+## Command list
+
+<details><summary><strong>Click to expand</strong></summary>
+
+| Command                 | Description                        |
+| ----------------------- | ---------------------------------- |
+| `binary <number>`       | returns binary representation      |
+| `octal <number>`        | returns octal representation       |
+| `hex <number>`          | returns hexadecimal representation |
+| `base <number> <base>`  | converts number to a given base    |
+| `digitsum <number>`     | sum of digits                      |
+| `bitlength <number>`    | bit length of number               |
+| `ispalindrome <number>` | is it a palindrome?                |
+| `isprime <number>`      | is it prime?                       |
+| `poweroftwo <number>`   | is it a power of two?              |
+| `factors <number>`      | prime factorization                |
+| `divisors <number>`     | all divisors of number             |
+| `collatz <number>`      | collatz step count                 |
+| `scientific <number>`   | scientific notation                |
+| `unicode <number>`      | unicode character                  |
+| `roman <number>`        | roman numeral                      |
+| `funfact <number>`      | trivia for that number             |
+| `summary <number>`      | full breakdown                     |
+| `cls`                   | clears the output window           |
+
+</details>
+
 ## Features
 
-### Animated boot sequence with simulated system logs:
+### Animated boot sequence with simulated system logs
 
-![Boot sequence](https://github.com/user-attachments/assets/74b24d84-8bd8-475b-a644-277e9a825d68)
+![Boot sequence](./docs/bootup.gif)
 
-### Interactive virtual keyboard:
+### Interactive virtual keyboard
 
-![Keyboard interaction](https://github.com/user-attachments/assets/fc1b0a05-5ce3-4286-8e1f-a9ef300ddab0)
+![Keyboard interaction](./docs/keyboard.gif)
 
 - Supports Caps Lock and Shift
-- Responds to both on-screen and physical key presses(physical key feedback is WIP)
+- Responds to both on-screen and physical key presses **(physical key feedback is WIP)**
 
-### Visual overflow feedback when input exceeds the allowed length:
+### Command parser with visual feedback (warning, error)
 
-![Overflow feedback](https://github.com/user-attachments/assets/ef3db137-b01f-4ce0-9561-0cddc1832f75)
+#### Correct command
 
-## Work in Progress
+![Correct Command](./docs/command_right.gif)
 
-### Math logic integration
+#### Correct command with wrong arguments
 
-- At the moment, even though the integer decomposition logic is ready, it's still not integrated with the visuals
-- A simple command parser is in progress. It will eventually allow various terminal-style commands, for example, changing the accent color or interacting directly with the integer data.
+![Correct command with wrong arguments](./docs/command_warning.gif)
 
-### Unification of all constant variables into a separate settings module
+#### Wrong command
 
-- I would like to go through the fake terminal files and allow the settings to be changed easily within one file
+![Wrong Command](./docs/command_error.gif)
+
+## Planned Features
 
 ### Sound implementation
 
-- Right now, everything is silent. I plan to add sounds that (in my opinion) will elevate the experience such as keypress sounds, ambient noise, and boot sounds.
+Currently, the interface is completely silent. I plan to add audio feedback such as:
+
+- Keypress sounds
+- Ambient terminal noise
+- Boot-up effects
+
+### Virtual keyboard integration with the physical one
+
+Right now, the virtual keyboard doesn't react to physical keypresses. I'd like to sync them, so typing on a real keyboard also triggers animations on the virtual keys.
+
+### Mobile responsiveness
+
+The site is currently impractical to use on mobile devices. I plan to create a separate UI layout optimized for phones and smaller screens.

@@ -10,7 +10,7 @@ export function createPulseManager(ctx, settings) {
 
 			ctx.beginPath();
 			ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-			ctx.fillStyle = `rgba(${p.accentRGB}, ${opacity * 0.015})`;
+			ctx.fillStyle = `rgba(${p.accentRGB}, ${opacity * 0.005})`;
 			ctx.fill();
 
 			ctx.save();
