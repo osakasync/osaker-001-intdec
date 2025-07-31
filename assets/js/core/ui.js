@@ -2,6 +2,12 @@ import { getTextWidth, getCharWidth } from './utils.js';
 import { triggerOverflowFeedback } from './feedback.js';
 import { handleInputSubmit } from './decomposer.js';
 import { CURSOR_BLINK_DURATION } from './settings.js';
+import {
+	addToHistory,
+	getPreviousHistory,
+	getNextHistory,
+	resetHistoryIndex,
+} from './parser/inputHistory.js';
 
 const input = document.getElementById('user-input');
 const cursor = document.getElementById('cursor');
@@ -32,7 +38,17 @@ export function setupInputHandlers() {
 	input.addEventListener('keydown', (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
+			addToHistory(input.value);
+			resetHistoryIndex();
 			handleInputSubmit();
+		} else if (e.key === 'ArrowUp') {
+			e.preventDefault();
+			input.value = getPreviousHistory();
+			refreshInputUI();
+		} else if (e.key === 'ArrowDown') {
+			e.preventDefault();
+			input.value = getNextHistory();
+			refreshInputUI();
 		}
 	});
 

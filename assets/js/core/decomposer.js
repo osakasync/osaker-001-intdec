@@ -14,7 +14,7 @@ export function initWelcomeMessage() {
 		'|   I N T D E C   v1.0  -  integer tool   |',
 		'|    (C) 2025, OSAKASYNC TERMINAL BIOS    |',
 		'+-----------------------------------------+',
-		"> Type 'help' to see all commands:",
+		'> Type "help" to see all commands or try "summary 1024":',
 	];
 
 	bootLines.forEach((line, i) => {
@@ -56,14 +56,12 @@ export function handleInputSubmit() {
 	const result = parseCommand(val);
 	input.value = '';
 
-	if (result == null) {
-		return;
+	if (result != null) {
+		const response = document.createElement('div');
+		response.textContent = (result[0] !== '>' ? '> ' : '') + result;
+		output.appendChild(response);
+		updateCursorPosition();
 	}
 
-	const response = document.createElement('div');
-	response.textContent = (result[0] !== '>' ? '> ' : '') + result;
-	output.appendChild(response);
-
-	updateCursorPosition();
 	scrollToBottom();
 }

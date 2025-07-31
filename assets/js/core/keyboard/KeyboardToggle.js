@@ -1,3 +1,5 @@
+import SoundManager from '../sound/SoundManager.js';
+
 export function initKeyboardToggle() {
 	const trigger = document.getElementById('keyboard-trigger');
 	const arrow = trigger?.querySelector('.arrow');
@@ -27,6 +29,7 @@ export function initKeyboardToggle() {
 
 		if (!keyboardOpen) {
 			//showing the keyboard
+			SoundManager.playRandomMouseClick();
 			arrow.innerHTML = '&#x25B2;';
 			flicker(trigger);
 
@@ -53,6 +56,7 @@ export function initKeyboardToggle() {
 			}, 150);
 		} else {
 			//hiding the keyboard
+			SoundManager.playRandomMouseClick();
 			arrow.innerHTML = '&#x25BC;';
 			flicker(trigger);
 

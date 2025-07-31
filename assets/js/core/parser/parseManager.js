@@ -1,6 +1,7 @@
 import commandMap from './commandMap.js';
 import { triggerOverflowFeedback } from '../feedback.js';
 import { WARNING_ERROR_COLOR, FATAL_ERROR_COLOR } from '../settings.js';
+import SoundManager from '../sound/SoundManager.js';
 
 export function parseCommand(input) {
 	if (input.trim() === '') {
@@ -17,10 +18,7 @@ export function parseCommand(input) {
 		return `Unknown command: "${command}". Type "help" to see all commands.`;
 	}
 
-	const args = rawArgs.map((arg) => (isNaN(arg) ? arg : Number(arg)));
-	console.log(entry);
-
-	console.log(args.length, entry.argCount);
+	const args = rawArgs.map((arg) => arg);
 
 	if (args.length !== entry.argCount) {
 		triggerOverflowFeedback(WARNING_ERROR_COLOR);
@@ -28,7 +26,9 @@ export function parseCommand(input) {
 	}
 
 	try {
-		return entry.fn(...args);
+		const result = entry.fn(...args);
+		SoundManager.playOk();
+		return result;
 	} catch (e) {
 		triggerOverflowFeedback(FATAL_ERROR_COLOR);
 		return `Error in "${command}": ${e.message}`;

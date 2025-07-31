@@ -1,5 +1,6 @@
 import { ACCENT_COLOR, ACCENT_RGB, FATAL_ERROR_COLOR } from './settings.js';
 import { hexToRgb } from './utils.js';
+import SoundManager from './sound/SoundManager.js';
 
 let overflowResetTimeout;
 const windowEl = document.querySelector('.window');
@@ -9,6 +10,12 @@ const accents = document.querySelectorAll('#prompt, #cursor');
 
 export function triggerOverflowFeedback(customColor = FATAL_ERROR_COLOR) {
 	const rgb = hexToRgb(customColor) || [255, 0, 0];
+
+	if (customColor === FATAL_ERROR_COLOR) {
+		SoundManager.playError();
+	} else {
+		SoundManager.playWarning();
+	}
 
 	windowEl.classList.remove('shake');
 	keyboardEl.classList.remove('shake');

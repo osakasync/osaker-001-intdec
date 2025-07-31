@@ -1,5 +1,6 @@
 import { initWelcomeMessage } from '../decomposer.js';
 import { applySettings } from '../settings.js';
+import SoundManager from '../sound/SoundManager.js';
 
 export function initBootSequence() {
 	const overlay = document.getElementById('boot-overlay');
@@ -23,6 +24,8 @@ export function initBootSequence() {
 	let skip = false;
 
 	function finishBoot() {
+		SoundManager.playBootEnd();
+		SoundManager.playAmbientHum();
 		overlay.classList.add('hidden');
 		applySettings();
 		initWelcomeMessage();
@@ -74,6 +77,9 @@ export function initBootSequence() {
 			window.triggerRadialPulse();
 		}, 200);
 	});
+
+	powerButton.addEventListener('mousedown', () => SoundManager.playBootPress());
+	powerButton.addEventListener('mouseup', () => SoundManager.playBootRelease());
 
 	skipButton.addEventListener('click', () => {
 		skip = true;

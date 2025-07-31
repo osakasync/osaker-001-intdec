@@ -68,13 +68,26 @@ export default class IntDecomposer {
 		2025: 'you’re in the future now',
 		404: 'fun fact not found',
 		128512: 'returns unicode for 😀',
+		3999999:
+			'the largest number you can write in Roman numerals (with overbar notation)',
 	};
 
 	static parse(value) {
-		const parsed = parseInt(value, 10);
-		if (isNaN(parsed) || parsed <= 0) {
-			throw new Error('Value must be a positive integer.');
+		const str = value.toString().trim();
+
+		// Match integers with optional ".0", but no other decimal parts
+		if (!/^\d+(\.0+)?$/.test(str)) {
+			throw new Error('Value must be a non-negative integer');
 		}
+
+		const parsed = parseInt(str);
+
+		if (!Number.isSafeInteger(parsed)) {
+			throw new Error(
+				`Value must be a safe non-negative integer (0-${Number.MAX_SAFE_INTEGER})`
+			);
+		}
+
 		return parsed;
 	}
 
@@ -110,6 +123,7 @@ export default class IntDecomposer {
 
 	static getDigitSum(value) {
 		value = this.parse(value);
+
 		return value
 			.toString()
 			.split('')
@@ -118,13 +132,19 @@ export default class IntDecomposer {
 
 	static getBitLength(value) {
 		value = this.parse(value);
+		if (value === 0) {
+			throw new Error('Bit length of 0 is ambiguous – usually defined as 1');
+		}
 		return Math.floor(Math.log2(value)) + 1;
 	}
 
 	static isPerfectSquare(value) {
 		value = this.parse(value);
 		const root = Math.floor(Math.sqrt(value));
-		return root * root === value;
+		if (root * root === value) {
+			return [true, root];
+		}
+		return false;
 	}
 
 	static isPowerOfTwo(value) {
@@ -150,6 +170,9 @@ export default class IntDecomposer {
 
 	static getPrimeFactors(value) {
 		value = this.parse(value);
+		if (value === 0) {
+			throw new Error('0 has no prime factors – no primes can multiply into 0');
+		}
 		if (this.isPrime(value)) return [value];
 
 		const primes = [];
@@ -171,6 +194,11 @@ export default class IntDecomposer {
 
 	static getDivisors(value) {
 		value = this.parse(value);
+		if (value === 0) {
+			throw new Error(
+				'0 has infinite divisors – any number multiplied by 0 gives 0'
+			);
+		}
 		const divisors = [];
 
 		for (let i = 1; i <= Math.sqrt(value); i++) {
@@ -185,6 +213,9 @@ export default class IntDecomposer {
 
 	static getCollatzSteps(value) {
 		value = this.parse(value);
+		if (value === 0) {
+			throw new Error('Collatz sequence for 0 never reaches 1');
+		}
 		let steps = 0;
 		while (value !== 1) {
 			value = value % 2 === 0 ? value / 2 : value * 3 + 1;
@@ -220,6 +251,9 @@ export default class IntDecomposer {
 
 	static getRomanNumeral(value) {
 		value = this.parse(value);
+		if (value < 1) {
+			throw new Error('Romans had no numeral for zero');
+		}
 		if (value < 1 || value > 3999999) {
 			return '::ROMAN LIMIT EXCEEDED::';
 		}
@@ -247,33 +281,45 @@ export default class IntDecomposer {
 	static getSummary(value) {
 		value = this.parse(value);
 
-		const isPalindrome = this.isPalindrome(value);
-		const isPerfectSquare = this.isPerfectSquare(value);
-		const isPrime = this.isPrime(value);
-		const [isPowerOfTwo, exponent] = this.isPowerOfTwo(value);
-		const primeFactors = this.getPrimeFactors(value).join(', ');
-		const divisors = this.getDivisors(value).join(', ');
-		const funFact = this.getFunFact(value);
+		// had to add this to handle edgecases cleanly introduced by allowing '0'
+		const safe = (fn) => {
+			try {
+				return fn();
+			} catch (err) {
+				return `${err.message}`;
+			}
+		};
+
+		const isPalindrome = safe(() => this.isPalindrome(value)) ? 'yes' : 'no';
+		const isPerfectSquare = safe(() => this.isPerfectSquare(value));
+		const isPrime = safe(() => this.isPrime(value)) ? 'yes' : 'no';
+		const [isPowerOfTwo, exponent] = safe(() => this.isPowerOfTwo(value)) || [
+			false,
+			0,
+		];
+		const primeFactors = safe(() => this.getPrimeFactors(value).join(', '));
+		const divisors = safe(() => this.getDivisors(value).join(', '));
+		const funFact = safe(() => this.getFunFact(value));
 
 		return [
 			`> value            :: ${value}`,
-			`> binary           :: ${this.getBinary(value)}`,
-			`> octal            :: ${this.getOctal(value)}`,
-			`> hex              :: ${this.getHex(value)}`,
-			`> digit sum        :: ${this.getDigitSum(value)}`,
-			`> bit length       :: ${this.getBitLength(value)}`,
-			`> palindrome?      :: ${isPalindrome ? 'yes' : 'no'}`,
-			`> perfect square?  :: ${isPerfectSquare ? 'yes' : 'no'}`,
-			`> prime?           :: ${isPrime ? 'yes' : 'no'}`,
+			`> binary           :: ${safe(() => this.getBinary(value))}`,
+			`> octal            :: ${safe(() => this.getOctal(value))}`,
+			`> hex              :: ${safe(() => this.getHex(value))}`,
+			`> digit sum        :: ${safe(() => this.getDigitSum(value))}`,
+			`> bit length       :: ${safe(() => this.getBitLength(value))}`,
+			`> palindrome?      :: ${isPalindrome}`,
+			`> perfect square?  :: ${isPerfectSquare}`,
+			`> prime?           :: ${isPrime}`,
 			`> power of two?    :: ${
 				isPowerOfTwo ? 'yes' : `no (nearest lower: ${2 ** exponent})`
 			}`,
 			`> prime factors    :: ${primeFactors}`,
 			`> divisors         :: ${divisors}`,
-			`> collatz steps    :: ${this.getCollatzSteps(value)}`,
-			`> scientific       :: ${this.getScientificNotation(value)}`,
-			`> roman numeral    :: ${this.getRomanNumeral(value)}`,
-			`> unicode          :: ${this.getUnicodeChar(value)}`,
+			`> collatz steps    :: ${safe(() => this.getCollatzSteps(value))}`,
+			`> scientific       :: ${safe(() => this.getScientificNotation(value))}`,
+			`> roman numeral    :: ${safe(() => this.getRomanNumeral(value))}`,
+			`> unicode          :: ${safe(() => this.getUnicodeChar(value))}`,
 			`> fun fact         :: ${funFact}`,
 		].join('\n');
 	}

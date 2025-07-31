@@ -1,5 +1,6 @@
 import IntDecomposer from '../../logic/intdecomposer.js';
 import { clearUi } from '../ui.js';
+import SoundManager from '../sound/SoundManager.js';
 
 const commandMap = {
 	binary: {
@@ -29,6 +30,10 @@ const commandMap = {
 	ispalindrome: {
 		fn: IntDecomposer.isPalindrome.bind(IntDecomposer),
 		help: 'ispalindrome <number> – is it a palindrome?',
+	},
+	isperfectsquare: {
+		fn: IntDecomposer.isPerfectSquare.bind(IntDecomposer),
+		help: 'isperfectsquare <number> - is it a perfect square?',
 	},
 	isprime: {
 		fn: IntDecomposer.isPrime.bind(IntDecomposer),
@@ -73,6 +78,10 @@ const commandMap = {
 	cls: {
 		fn: clearUi,
 		help: 'cls – clears the output window',
+	},
+	mute: {
+		fn: () => (SoundManager.toggleMute() ? 'Sound muted' : 'Sound unmuted'),
+		help: 'mute - mutes/unmutes the sound effects',
 	},
 	help: {
 		fn: () =>

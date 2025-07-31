@@ -1,0 +1,54 @@
+All sound effects used in this project are licensed under the Pixabay Content License:
+https://pixabay.com/service/license/
+
+Modifications (such as cutting, renaming, trimming, or normalization) were made as part of the IntDec project.
+
+---
+
+boot/
+All sound effects cut from:
+"computer_einschalten_ohne_rauschen-69808.mp3"
+https://pixabay.com/sound-effects/computer-einschalten-ohne-rauschen-69808
+
+---
+
+error/
+error1.wav - from:
+"error-08-206492.mp3"
+https://pixabay.com/sound-effects/error-08-206492
+
+error2.wav - cut from:
+"error-message-182475.mp3"
+https://pixabay.com/sound-effects/error-message-182475
+
+---
+
+ok/
+ok.wav - from:
+"retro-blip-236676.mp3"
+https://pixabay.com/sound-effects/retro-blip-236676
+
+---
+
+keyboard/
+All typing sound effects cut from:
+"computer-keyboard-typing-290582.mp3"
+https://pixabay.com/sound-effects/computer-keyboard-typing-290582
+
+---
+
+mouse/
+click1.wav - from:
+"computer-mouse-click-351398.mp3"
+https://pixabay.com/sound-effects/computer-mouse-click-351398
+
+click2.wav - from:
+"click-tap-computer-mouse-352734.mp3"
+https://pixabay.com/sound-effects/click-tap-computer-mouse-352734
+
+---
+
+ambience/
+humming.wav - cut from:
+"computer_einschalten_ohne_rauschen-69808.mp3"
+https://pixabay.com/sound-effects/computer-einschalten-ohne-rauschen-69808

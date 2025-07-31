@@ -1,6 +1,7 @@
 import { triggerOverflowFeedback } from '../feedback.js';
 import { refreshInputUI, canAcceptChar } from '../ui.js';
 import { animateKeyPress } from './KeyAnimator.js';
+import SoundManager from '../sound/SoundManager.js';
 
 export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 	let capsEnabled = false;
@@ -130,6 +131,7 @@ export function createKeyHandler(input, terminalWindow, prompt, keyboard) {
 				break;
 		}
 
+		SoundManager.playRandomKeySound();
 		animateKeyPress(btn, wasActive, btn.classList.contains('active'));
 		refreshInputUI();
 		input.focus();

@@ -8,10 +8,11 @@ Intdec is an experimental web interface for integer decomposition and base conve
 
 - [Purpose](#purpose)
 - [Running](#running)
-- [External dependency](#external-dependency)
+- [External Dependency](#external-dependency)
 - [Fonts](#fonts)
+- [Sound Effects](#sound-effects)
 - [Project Structure](#project-structure)
-- [Command list](#command-list)
+- [Command List](#command-list)
 - [Features](#features)
 - [Work in Progress](#work-in-progress)
 
@@ -23,7 +24,7 @@ This project is primarily created to learn through feedback. After finishing it,
 
 Due to dependency on **ES modules**, it's recommended to run the app on a local server. Example would include the **Live Server** addon on **Visual Studio Code**.
 
-## External dependency
+## External Dependency
 
 The project loads Anime.js from a CDN (`https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js`). Ensure you have an internet connection when opening the page so the animation library can load successfully.
 
@@ -35,6 +36,13 @@ This project uses the **Web437 IBM VGA 8x16** and **Web437 IBM VGA 8x16-2x** fon
 - Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - Original font files unmodified
 - Provided “as-is”, without warranty of any kind
+
+## Sound Effects
+
+All sound effects used in this project are licensed under the [Pixabay Content License](https://pixabay.com/service/license/).
+
+Modifications (such as cutting, renaming, trimming, or normalization) were made as part of the IntDec project.  
+See [ATTRIBUTION.txt](./assets/sounds/ATTRIBUTION.txt) for full source credits and usage details.
 
 ## Project Structure
 
@@ -72,7 +80,7 @@ intdec/
 
 </details>
 
-## Command list
+## Command List
 
 <details><summary><strong>Click to expand</strong></summary>
 
@@ -128,18 +136,20 @@ intdec/
 
 ## Planned Features
 
-### Sound implementation
+- [x] Math logic integration  
+       Integrated terminal commands for number breakdowns, conversions, and properties (e.g., `factors`, `collatz`, `roman`, and more)
 
-Currently, the interface is completely silent. I plan to add audio feedback such as:
+- [x] Centralized settings  
+       Moved all constants to `settings.js` for easier maintenance.
 
-- Keypress sounds
-- Ambient terminal noise
-- Boot-up effects
+- [x] Sound implementation  
+       Added boot-up, keypress, and ambient sounds.
 
-### Virtual keyboard integration with the physical one
+- [ ] Physical keyboard -> virtual keyboard syncing  
+       Still in progress.
 
-Right now, the virtual keyboard doesn't react to physical keypresses. I'd like to sync them, so typing on a real keyboard also triggers animations on the virtual keys.
+- [ ] Mobile layout  
+       Needs a separate responsive view.
 
-### Mobile responsiveness
-
-The site is currently impractical to use on mobile devices. I plan to create a separate UI layout optimized for phones and smaller screens.
+- [ ] Advanced number operations  
+       Expand math support with more number-based functions! (e.g., `isFactorial`, `ln`, `log`, `isFibonacci`, and more)

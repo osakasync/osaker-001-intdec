@@ -1,5 +1,9 @@
 import { hexToRgb } from './utils.js';
 
+export const MAX_HISTORY_ENTRIES = 25;
+
+export let VOLUME = 0.5;
+
 export let ACCENT_COLOR = '#0f0';
 export let ACCENT_RGB = hexToRgb(ACCENT_COLOR);
 export let FATAL_ERROR_COLOR = '#f00';
