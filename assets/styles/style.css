@@ -19,6 +19,12 @@
 	image-rendering: pixelated;
 }
 
+html {
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
 :root {
 	/*--accent-color: #0f0;
   --accent-rgb: 0, 255, 0;
@@ -436,6 +442,30 @@ div#output {
 	}
 } 
 */
+
+@media (max-width: 480px) {
+	#console-stack {
+		transform: translate(-50%, -50%) scale(0.5);
+		transform-origin: center center;
+		font-size: 150%;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+	#console-stack {
+		transform: translate(-50%, -50%) scale(0.5);
+		transform-origin: center center;
+		font-size: 150%;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	#console-stack {
+		transform: translate(-50%, -50%) scale(0.75);
+		transform-origin: center center;
+		font-size: 150%;
+	}
+}
 
 /* Anims */
 @keyframes blink {
