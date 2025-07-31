@@ -15,7 +15,7 @@
 
 /* Base */
 * {
-	font-family: 'IBMVGA8x16', monospace;
+	font-family: 'IBMVGA8x16', 'Consolas', monospace;
 	image-rendering: pixelated;
 }
 
