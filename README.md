@@ -65,6 +65,7 @@ intdec/
 │   │   │   ├── boot/           # Fake boot sequence
 │   │   │   ├── keyboard/       # Virtual keyboard
 │   │   │   ├── parser/         # Command parser
+│   │   │   ├── sound/
 │   │   │   ├── decomposer.js
 │   │   │   ├── feedback.js     # Visual warning/error feedback
 │   │   │   ├── main.js
@@ -74,6 +75,13 @@ intdec/
 │   │   └── logic/
 │   │       ├── baseconverter.js
 │   │       └── intdecomposer.js
+│   ├── sounds/
+│   │   ├── ambience/
+│   │   ├── boot/
+│   │   ├── error/
+│   │   ├── keyboard/
+│   │   ├── mouse/
+│   │   └── ATTRIBUTION.txt
 │   └── styles/
 │       └── style.css           # Terminal layout and visual style
 ```
@@ -84,26 +92,28 @@ intdec/
 
 <details><summary><strong>Click to expand</strong></summary>
 
-| Command                 | Description                        |
-| ----------------------- | ---------------------------------- |
-| `binary <number>`       | returns binary representation      |
-| `octal <number>`        | returns octal representation       |
-| `hex <number>`          | returns hexadecimal representation |
-| `base <number> <base>`  | converts number to a given base    |
-| `digitsum <number>`     | sum of digits                      |
-| `bitlength <number>`    | bit length of number               |
-| `ispalindrome <number>` | is it a palindrome?                |
-| `isprime <number>`      | is it prime?                       |
-| `poweroftwo <number>`   | is it a power of two?              |
-| `factors <number>`      | prime factorization                |
-| `divisors <number>`     | all divisors of number             |
-| `collatz <number>`      | collatz step count                 |
-| `scientific <number>`   | scientific notation                |
-| `unicode <number>`      | unicode character                  |
-| `roman <number>`        | roman numeral                      |
-| `funfact <number>`      | trivia for that number             |
-| `summary <number>`      | full breakdown                     |
-| `cls`                   | clears the output window           |
+| Command                    | Description                        |
+| -------------------------- | ---------------------------------- |
+| `binary <number>`          | returns binary representation      |
+| `octal <number>`           | returns octal representation       |
+| `hex <number>`             | returns hexadecimal representation |
+| `base <number> <base>`     | converts number to a given base    |
+| `digitsum <number>`        | sum of digits                      |
+| `bitlength <number>`       | bit length of number               |
+| `ispalindrome <number>`    | is it a palindrome?                |
+| `isperfectsquare <number>` | is it a perfect square?            |
+| `isprime <number>`         | is it prime?                       |
+| `poweroftwo <number>`      | is it a power of two?              |
+| `factors <number>`         | prime factorization                |
+| `divisors <number>`        | all divisors of number             |
+| `collatz <number>`         | collatz step count                 |
+| `scientific <number>`      | scientific notation                |
+| `unicode <number>`         | unicode character                  |
+| `roman <number>`           | roman numeral                      |
+| `funfact <number>`         | trivia for that number             |
+| `summary <number>`         | full breakdown                     |
+| `cls`                      | clears the output window           |
+| `mute`                     | mutes/unmutes the sound effects    |
 
 </details>
 
