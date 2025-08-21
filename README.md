@@ -2,7 +2,8 @@
 
 Intdec is an experimental web interface for integer decomposition and base conversion. It features a retro terminal-style UI rendered entirely in the browser using vanilla JavaScript and [Anime.js](https://animejs.com/).
 
-**Live demo**: [https://osakasync.github.io/osaker-001-intdec/](https://osakasync.github.io/osaker-001-intdec/)
+**Live demo**: [https://osakasync.github.io/osaker-001-intdec/](https://osakasync.github.io/osaker-001-intdec/)<br />
+**Video breakdown**: [Watch on YouTube](https://www.youtube.com/watch?v=LBKzO0RLMj8)
 
 ## Table of Contents
 
@@ -14,7 +15,7 @@ Intdec is an experimental web interface for integer decomposition and base conve
 - [Project Structure](#project-structure)
 - [Command List](#command-list)
 - [Features](#features)
-- [Work in Progress](#work-in-progress)
+- [Project Breakdown Video](#project-breakdown-video)
 
 ## Purpose
 
@@ -155,11 +156,9 @@ intdec/
 - [x] Sound implementation  
        Added boot-up, keypress, and ambient sounds.
 
-- [ ] Physical keyboard -> virtual keyboard syncing  
-       Still in progress.
+## Project Breakdown Video
 
-- [ ] Mobile layout  
-       Needs a separate responsive view.
+[<img src="https://github.com/user-attachments/assets/130dfc14-6ab6-4672-9178-ef739714c994" alt="IntDec Breakdown Video"/>](https://www.youtube.com/watch?v=LBKzO0RLMj8)
+*Watch the full breakdown on [YouTube](https://www.youtube.com/watch?v=LBKzO0RLMj8).*
 
-- [ ] Advanced number operations  
-       Expand math support with more number-based functions! (e.g., `isFactorial`, `ln`, `log`, `isFibonacci`, and more)
+
